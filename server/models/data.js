@@ -14,5 +14,8 @@ class userDb {
   static updateData(id, updateData){
     return this.invokeDB().updateOne({_id:ObjectId(id)}, updateData)
   }
+  static getOneData(id){
+    return this.invokeDB().findOne({_id:ObjectId(id)});
+  }
 }
 module.exports = userDb;

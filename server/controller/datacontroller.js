@@ -37,10 +37,26 @@ class userDataController {
       res.status(500).json("internal service error");
     }
   }
+  static async getOneUser(req, res) {
+    try {
+      let id = req.params.id;
+      let findUser = await userDb.getOneData(id);
+      if (!findUser) {
+        res.status(404).json("User Not Found");
+        return;
+      }
+      res.status(200).json(findUser);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json("internal service error");
+    }
+  }
+
   static async updateDataUser(req, res) {
     try {
       let id = req.params.id;
-      if (!id) {
+      let findUser = await userDb.getOneData(id);
+      if (!findUser) {
         res.status(404).json("User Not Found");
         return;
       }
