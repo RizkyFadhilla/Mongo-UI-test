@@ -46,7 +46,6 @@ class userDataController {
       }
       res.status(200).json(findUser);
     } catch (error) {
-      console.log(error);
       res.status(500).json("internal service error");
     }
   }
@@ -59,7 +58,6 @@ class userDataController {
         res.status(404).json("User Not Found");
         return;
       }
-      console.log(req.body);
       let { firstName, lastName, email, gender, addr } = req.body;
       if (!email) {
         res.status(400).json("Please Fill the email");

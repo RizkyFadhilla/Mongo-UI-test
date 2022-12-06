@@ -91,7 +91,6 @@ export const fetchAllData = (sort) => {
       }
       dispatch(fetchSuccess(data));
     } catch (error) {
-      console.log(error);
       dispatch(setFetchError(error));
     } finally {
       dispatch(setFetchloading(false));
