@@ -26,7 +26,7 @@ class userDataController {
         res.status(400).json("Please Fill the Gender");
         return;
       }
-      if (!validator.email) {
+      if (!validator.isEmail(email)) {
         res.status(400).json("email must email format");
         return;
       }
@@ -59,6 +59,7 @@ class userDataController {
         res.status(404).json("User Not Found");
         return;
       }
+      console.log(req.body);
       let { firstName, lastName, email, gender, addr } = req.body;
       if (!email) {
         res.status(400).json("Please Fill the email");
@@ -73,7 +74,7 @@ class userDataController {
         res.status(400).json("Please Fill the Gender");
         return;
       }
-      if (!validator.email) {
+      if (!validator.isEmail(email)) {
         res.status(400).json("email must email format");
         return;
       }

@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllData } from "../stores/actions/userAction";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./Home.css";
-import { useState } from "react";
 
 function Home() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   let { fetchData, fetchLoading, fetchError } = useSelector((state) => state);
   useEffect(() => {
     dispatch(fetchAllData());
@@ -33,14 +34,21 @@ function Home() {
     event.preventDefault();
     dispatch(fetchAllData("address"));
   }
+  function updateFormClick(event, id) {
+    event.preventDefault();
+    navigate("/update", {
+      state: id,
+    });
+  }
   return (
     <>
-      <h1>Testing</h1>
-      <span>
+      <h1>Data User</h1>
+      <div id="container">
         <button onClick={sortByName}>sort by Name</button>{" "}
-        <button onClick={sortByGender}>sort by Gender</button>
+        <button onClick={sortByGender}>sort by Gender</button>{" "}
         <button onClick={sortByAddress}>sort by Address</button>
-      </span>
+      </div>
+
       <table>
         <tr>
           <th>name</th>
@@ -53,7 +61,7 @@ function Home() {
             <>
               <tr>
                 <td>
-                  {el.lastName} {el.firstname}
+                  {el.lastName} {el.firstName}
                 </td>
                 <td>{el.gender}</td>
                 <td>
@@ -67,7 +75,9 @@ function Home() {
                   })}
                 </td>
                 <td>
-                  <button>update</button>
+                  <button onClick={(event) => updateFormClick(event, el._id)}>
+                    update
+                  </button>
                 </td>
               </tr>
             </>

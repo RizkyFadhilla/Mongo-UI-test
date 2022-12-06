@@ -2,8 +2,11 @@ table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 75%;
+  margin: auto;
 }
-
+h1{
+  text-align: center;
+}
 td, th {
   border: 1px solid #dddddd;
   text-align: center;
@@ -12,4 +15,8 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+#container{
+  width: 75%;
+  margin: auto;
 }
