@@ -1,5 +1,4 @@
-import Swal from "sweetalert2";
-import { localURL } from "../../url";
+import { localURL, proxyURL } from "../../url";
 import {
   FETCH_ALL_DATA,
   LOADING_FETCH_ALL_DATA,
@@ -50,11 +49,11 @@ export const setFetchOneLoading = (payload) => {
 export const fetchAllData = (sort) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(localURL, {
+      const response = await fetch(proxyURL + localURL, {
         method: "GET",
       });
+      console.log(response)
       if (!response.ok) throw await response.json();
-
       const data = await response.json();
       if (sort === "name") {
         data.sort((a, b) => {
@@ -91,6 +90,7 @@ export const fetchAllData = (sort) => {
       }
       dispatch(fetchSuccess(data));
     } catch (error) {
+      console.log(error)
       dispatch(setFetchError(error));
     } finally {
       dispatch(setFetchloading(false));
