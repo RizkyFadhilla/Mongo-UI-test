@@ -1,4 +1,4 @@
-import { localURL, proxyURL } from "../../url";
+import { localURL } from "../../url";
 import {
   FETCH_ALL_DATA,
   LOADING_FETCH_ALL_DATA,
@@ -49,7 +49,7 @@ export const setFetchOneLoading = (payload) => {
 export const fetchAllData = (sort) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(proxyURL + localURL, {
+      const response = await fetch(localURL, {
         method: "GET",
       });
       console.log(response)
